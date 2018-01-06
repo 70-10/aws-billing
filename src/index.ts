@@ -1,6 +1,6 @@
 import * as AWS from "aws-sdk";
 import * as moment from "moment";
-import * as numeral from "numeral";
+import { flatten, humanizeDollar } from "./util";
 
 moment.locale("ja");
 const CloudWatch = new AWS.CloudWatch({ region: "us-east-1" });
@@ -114,13 +114,4 @@ function output(serviceBillings: any) {
   });
 }
 
-function flatten(ary: any) {
-  return ary.reduce(
-    (p: any, c: any) => (Array.isArray(c) ? p.concat(flatten(c)) : p.concat(c)),
-    []
-  );
-}
 
-export function humanizeDollar(num: number) {
-  return numeral(num).format("$0,0.00");
-}
