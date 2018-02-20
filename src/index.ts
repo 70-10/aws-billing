@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import * as AWS from "aws-sdk";
 import * as moment from "moment";
 import { flatten, humanizeDollar } from "./util";
