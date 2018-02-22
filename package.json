@@ -10,8 +10,7 @@
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "lint": "tslint src/**/*.ts",
-    "test": "mocha test/**/*.test.ts",
-    "postinstall": "npm run build"
+    "test": "mocha test/**/*.test.ts"
   },
   "repository": "70-10/aws-billing",
   "keywords": [
