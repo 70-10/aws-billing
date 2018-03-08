@@ -3,6 +3,7 @@
 import * as AWS from "aws-sdk";
 import * as moment from "moment";
 import { flatten, humanizeDollar } from "./util";
+import * as Table from "cli-table2";
 
 moment.locale("ja");
 const CloudWatch = new AWS.CloudWatch({ region: "us-east-1" });
@@ -104,16 +105,12 @@ function output(serviceBillings: any) {
     .map((a: any) => a.diff)
     .reduce((prev: number, current: number) => prev + current);
 
-  console.log(
-    `total: ${humanizeDollar(totalBilling)} (+${humanizeDollar(diffTotal)})`
-  );
+  const table: any = new Table({ head: ["Service", "Cost", "Diff from yesterday"] });
+  table.push(["Total", humanizeDollar(totalBilling), `+${humanizeDollar(diffTotal)}`]);
+
   serviceBillings.forEach((e: any) => {
-    console.log(
-      `${e.service_name}: ${humanizeDollar(e.billing)} (+${humanizeDollar(
-        e.diff
-      )})`
-    );
+    table.push([e.service_name, humanizeDollar(e.billing), `+${humanizeDollar(e.diff)}`]);
   });
+
+  console.log(table.toString());
 }
-
-
