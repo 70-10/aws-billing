@@ -20,7 +20,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "aws-sdk": "^2.463.0",
+    "aws-sdk": "^2.814.0",
     "cli-table2": "^0.2.0",
     "moment": "^2.24.0",
     "numeral": "^2.0.6"
